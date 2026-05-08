@@ -36,7 +36,7 @@ export const LOCATIONS: Record<LocationId, GymLocation> = {
       "Re-rack everything before leaving.",
       "Respect the pack. Respect the iron.",
     ],
-    mapsQuery: "12+Rue+du+Silverback+Paris",
+    mapsQuery: "35.8587,10.5841",
     image: gymCross,
   },
   fitbox: {
@@ -72,7 +72,7 @@ export const LOCATIONS: Record<LocationId, GymLocation> = {
       "Sparring only with coach approval.",
       "Leave ego at the door — bring discipline.",
     ],
-    mapsQuery: "47+Avenue+de+la+Canopée+Paris",
+    mapsQuery: "35.8856,10.5985",
     image: gymFitbox,
   },
 };

@@ -60,8 +60,8 @@ function MapBlock() {
         <div key={loc.id} className="border border-border bg-card overflow-hidden">
           <iframe
             title={loc.name}
-            src={`https://www.google.com/maps?q=${loc.mapsQuery}&output=embed`}
-            className="w-full h-72 grayscale contrast-125"
+            src={`https://www.google.com/maps?q=${loc.mapsQuery}&z=15&output=embed`}
+            className="w-full h-72"
             loading="lazy"
           />
           <div className="p-6">
