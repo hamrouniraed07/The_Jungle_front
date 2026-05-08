@@ -16,34 +16,34 @@ interface Coach {
 const COACHES: Record<LocationId, Coach[]> = {
   cross: [
     {
-      name: "Karim 'Silverback' Haddad",
+      name: "Anas 'Zbanta9louch' Douss",
       role: "Head CrossFit Coach",
       bio: "CF-L3 certified. 12 years on the platform. Builds athletes who lift heavy and breathe heavier.",
       image: coachCross1,
-      ig: "@silverback.lifts",
+      ig: "@anasdouss",
     },
     {
-      name: "Lina Ben Salah",
+      name: "Youssef Ayeche",
       role: "Olympic Lifting Coach",
       bio: "National-level weightlifter. Snatch & clean technician. Turns sloppy pulls into clean PRs.",
       image: coachCross2,
-      ig: "@lina.olympic",
+      ig: "@youssefayeche",
     },
   ],
   fitbox: [
     {
-      name: "Sami 'Iron Jaw' Trabelsi",
-      role: "Head Boxing Coach",
-      bio: "Ex-pro boxer, 28-4 record. Sharpens footwork, defense and the kind of jab that ends rounds.",
+      name: "Malek 'Gordon' Douss",
+      role: "Pro Basketball Player & Physiotherapist",
+      bio: "Professional basketball player with elite court vision and athleticism. Combines high-level performance with physiotherapy expertise to optimize recovery, prevent injuries, and enhance overall physical conditioning.",
       image: coachFitbox1,
-      ig: "@ironjaw.boxing",
+      ig: "@doussmalek",
     },
     {
-      name: "Yasmine 'Panthera' Mejri",
-      role: "MMA Conditioning Coach",
-      bio: "BJJ purple belt & strength coach. Designs HIIT circuits that mirror real fight cardio.",
+      name: "Yessine Slama",
+      role: "Professional Physiotherapist & Nutritionist",
+      bio: "Certified physiotherapist and nutrition specialist. Focuses on injury prevention, rehabilitation, and personalized nutrition plans to optimize performance, recovery, and overall well-being.",
       image: coachFitbox2,
-      ig: "@panthera.fit",
+      ig: "@yessineslama",
     },
   ],
 };
