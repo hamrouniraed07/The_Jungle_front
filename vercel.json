@@ -1,4 +1,6 @@
 {
   "version": 2,
-  "framework": "nitro"
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
