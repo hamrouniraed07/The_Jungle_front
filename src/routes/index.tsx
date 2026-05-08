@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Two locations, one mindset. Cross-training and combat-ready boxing in Paris. Book your private séance.",
+          "Two locations, one mindset. Cross-training and combat-ready boxing in Sahloul 4. Book your private séance.",
       },
       { property: "og:title", content: "The Jungle — Cross-Training & Fit Box" },
       {

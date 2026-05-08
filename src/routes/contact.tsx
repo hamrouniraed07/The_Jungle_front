@@ -10,7 +10,8 @@ export const Route = createFileRoute("/contact")({
       { title: "Contact — The Jungle" },
       {
         name: "description",
-        content: "Get in touch with The Jungle. Two locations in Paris ready for you.",
+        content:
+          "Get in touch with The Jungle. Two locations in Sahloul4 and Hammam Sousse ready for you.",
       },
       { property: "og:title", content: "Contact — The Jungle" },
       { property: "og:description", content: "Reach the pack. We're listening." },

@@ -70,7 +70,7 @@ export function PricingSection() {
               THE JUNGLE CROSS-TRAINING GYM
             </h3>
             <span className="text-jungle font-display tracking-widest text-xs hidden sm:block">
-              PARIS · SILVERBACK
+              Sahloul 4 · SILVERBACK
             </span>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -84,7 +84,7 @@ export function PricingSection() {
           <div className="flex items-baseline justify-between mb-6 border-b border-border pb-3">
             <h3 className="font-display text-2xl md:text-3xl tracking-wider">THE JUNGLE FIT BOX</h3>
             <span className="text-jungle font-display tracking-widest text-xs hidden sm:block">
-              PARIS · CANOPÉE
+              Hammam Sousse · CANOPÉE
             </span>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
