@@ -36,7 +36,7 @@ export const LOCATIONS: Record<LocationId, GymLocation> = {
       "Re-rack everything before leaving.",
       "Respect the pack. Respect the iron.",
     ],
-    mapsQuery: "35.8587,10.5841",
+    mapsQuery: "The+Jungle+Cross-Training+Gym+Sousse",
     image: gymCross,
   },
   fitbox: {
@@ -72,7 +72,7 @@ export const LOCATIONS: Record<LocationId, GymLocation> = {
       "Sparring only with coach approval.",
       "Leave ego at the door — bring discipline.",
     ],
-    mapsQuery: "35.8856,10.5985",
+    mapsQuery: "The+Jungle+Fit+Box+Sousse",
     image: gymFitbox,
   },
 };
