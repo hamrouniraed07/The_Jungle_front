@@ -16,7 +16,7 @@ interface Coach {
 const COACHES: Record<LocationId, Coach[]> = {
   cross: [
     {
-      name: "Anas 'Zbanta9louch' Douss",
+      name: "Anas 'Zbanda9louch' Douss",
       role: "Pro Basketball Player & Physiotherapist",
       bio: "Professional basketball player with years of competitive experience. Combines on-court performance with physiotherapy expertise, specializing in injury prevention, rehabilitation, and optimizing athletes’ physical condition and recovery.",
       image: coachCross1,
