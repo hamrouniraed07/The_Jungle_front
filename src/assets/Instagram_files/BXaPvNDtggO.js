@@ -1,0 +1,4 @@
+;/*FB_PKG_DELIM*/
+
+__d("useIGDThreadMuteQuery_instagramRelayOperation",[],(function(t,n,r,o,a,i){a.exports="33462703426711373"}),null);
+__d("useMarkThreadAsUnread",["FBLogger","LSFactory","LSOptimisticMarkThreadUnreadStoredProcedure","MWPIsThreadUnread","react","useAsyncReStore"],(function(t,n,r,o,a,i,l){"use strict";var e,s=(e||(e=o("react"))).useCallback;function u(e,t){var n=r("useAsyncReStore")(),a=o("MWPIsThreadUnread").useIsThreadUnread(e),l=s(async function(){try{var o=await n;await o.runInTransaction(function(t){return r("LSOptimisticMarkThreadUnreadStoredProcedure")(r("LSFactory")(t),{threadKey:e})},"readwrite",void 0,void 0,i.id+":38"),t==null||t()}catch(e){r("FBLogger")("igd_web").warn("Error marking thread as unread: %s",String(e))}},[n,e,t]);return{handleMarkAsUnread:l,shouldShowOption:!a}}l.useMarkThreadAsUnreadOption=u}),98);
