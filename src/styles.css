@@ -65,6 +65,17 @@
   --shadow-brutal: 8px 8px 0 0 oklch(0.62 0.18 142);
 }
 
+.theme-fitbox {
+  --primary: oklch(0.6 0.2 25);
+  --accent: oklch(0.6 0.2 25);
+  --ring: oklch(0.6 0.2 25);
+  --jungle: oklch(0.6 0.2 25);
+  --jungle-glow: oklch(0.7 0.22 25);
+  --gradient-jungle: linear-gradient(135deg, oklch(0.6 0.2 25), oklch(0.45 0.15 20));
+  --shadow-jungle: 0 20px 60px -15px oklch(0.6 0.2 25 / 0.45);
+  --shadow-brutal: 8px 8px 0 0 oklch(0.6 0.2 25);
+}
+
 .dark {
   --background: oklch(0.13 0.01 150);
   --foreground: oklch(0.96 0.01 100);
