@@ -17,15 +17,16 @@ const COACHES: Record<LocationId, Coach[]> = {
   cross: [
     {
       name: "Anas 'Zbanta9louch' Douss",
-      role: "Head CrossFit Coach",
-      bio: "CF-L3 certified. 12 years on the platform. Builds athletes who lift heavy and breathe heavier.",
+      role: "Pro Basketball Player & Physiotherapist",
+      bio: "Professional basketball player with years of competitive experience. Combines on-court performance with physiotherapy expertise, specializing in injury prevention, rehabilitation, and optimizing athletes’ physical condition and recovery.",
       image: coachCross1,
       ig: "@anasdouss",
     },
+
     {
       name: "Youssef Ayeche",
-      role: "Olympic Lifting Coach",
-      bio: "National-level weightlifter. Snatch & clean technician. Turns sloppy pulls into clean PRs.",
+      role: "Certified CrossFit Coach & Nutritionist",
+      bio: "Certified CrossFit coach and nutrition specialist. Builds strength, endurance, and performance through functional training and personalized nutrition plans, helping athletes reach peak condition and sustainable results.",
       image: coachCross2,
       ig: "@youssefayeche",
     },
