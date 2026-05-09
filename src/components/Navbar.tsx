@@ -12,7 +12,6 @@ export function Navbar() {
     { to: "/locations", label: "LOCATIONS" },
     { to: "/events", label: "EVENTS" },
     { to: "/transformations", label: "TRANSFORMATIONS" },
-    { to: "/contact", label: "CONTACT" },
   ];
 
   return (
