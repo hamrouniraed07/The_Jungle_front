@@ -20,14 +20,16 @@ const EVENT_ALBUMS: EventAlbum[] = [
     id: "grand-opening",
     title: "Jungle Sahloul Grand Opening",
     date: "October 2025",
-    description: "Celebrating the launch of our cross-training temple in Sousse. High energy, heavy lifts, and the start of a legacy.",
+    description:
+      "Celebrating the launch of our cross-training temple in Sousse. High energy, heavy lifts, and the start of a legacy.",
     images: [gymCross, coachCross1, coachCross2],
   },
   {
     id: "fitbox-challenge",
     title: "The Fit Box Combat Night",
     date: "December 2025",
-    description: "A night of high-intensity boxing and MMA conditioning. The pack tested their limits in the ring.",
+    description:
+      "A night of high-intensity boxing and MMA conditioning. The pack tested their limits in the ring.",
     images: [gymFitbox, coachFitbox1, coachFitbox2],
   },
 ];
@@ -51,13 +53,13 @@ export function EventsSection() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {EVENT_ALBUMS.map((album) => (
-            <div 
+            <div
               key={album.id}
               className="group relative border border-border bg-card overflow-hidden transition-all duration-500 hover:border-jungle/50"
             >
               <div className="relative h-[400px] overflow-hidden">
-                <img 
-                  src={album.images[0]} 
+                <img
+                  src={album.images[0]}
                   alt={album.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -72,7 +74,7 @@ export function EventsSection() {
                   <p className="text-muted-foreground text-sm max-w-md line-clamp-2 mb-6">
                     {album.description}
                   </p>
-                  <button 
+                  <button
                     onClick={() => setActiveAlbum(activeAlbum === album.id ? null : album.id)}
                     className="inline-flex items-center gap-2 bg-jungle text-primary-foreground font-display tracking-widest px-6 py-3 text-sm hover:bg-jungle-glow transition"
                   >
@@ -82,16 +84,18 @@ export function EventsSection() {
               </div>
 
               {/* Expanded Album Images */}
-              <div 
+              <div
                 className={cn(
                   "grid grid-cols-3 gap-1 p-1 bg-border/20 transition-all duration-500",
-                  activeAlbum === album.id ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+                  activeAlbum === album.id
+                    ? "max-h-[500px] opacity-100"
+                    : "max-h-0 opacity-0 overflow-hidden",
                 )}
               >
                 {album.images.map((img, idx) => (
                   <div key={idx} className="aspect-square overflow-hidden">
-                    <img 
-                      src={img} 
+                    <img
+                      src={img}
                       alt={`${album.title} ${idx + 1}`}
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer"
                     />
@@ -102,7 +106,7 @@ export function EventsSection() {
           ))}
         </div>
       </div>
-      
+
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-jungle/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
     </section>

@@ -29,8 +29,8 @@ export function Hero() {
             <span className="text-stroke">WITHIN</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-lg">
-            Two arenas. One mindset. Cross-training iron or combat-ready boxing — pick
-            your battlefield and forge the strongest version of yourself.
+            Two arenas. One mindset. Cross-training iron or combat-ready boxing — pick your
+            battlefield and forge the strongest version of yourself.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link

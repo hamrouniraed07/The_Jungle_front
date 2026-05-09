@@ -47,27 +47,118 @@ import bDay33 from "@/assets/birthday33.jpg";
 import bDay34 from "@/assets/birthday34.jpg";
 import bDay120 from "@/assets/birthday120.jpg";
 
+import camp from "@/assets/camping.jpg";
+import camp0 from "@/assets/camping0.jpg";
+import camp1 from "@/assets/camping1.jpg";
+import camp2 from "@/assets/camping2.jpg";
+import camp3 from "@/assets/camping3.jpg";
+import camp4 from "@/assets/camping4.jpg";
+import camp5 from "@/assets/camping5.jpg";
+import camp6 from "@/assets/camping6.jpg";
+import camp7 from "@/assets/camping7.jpg";
+import camp8 from "@/assets/camping8.jpg";
+
+import deca from "@/assets/decathlon.jpg";
+import deca1 from "@/assets/decathlon1.jpg";
+import deca2 from "@/assets/decathlon2.jpg";
+import deca3 from "@/assets/decathlon3.jpg";
+import deca4 from "@/assets/decathlon4.jpg";
+import deca5 from "@/assets/decathlon5.jpg";
+import deca6 from "@/assets/decathlon6.jpg";
+import deca7 from "@/assets/decathlon7.jpg";
+import deca8 from "@/assets/decathlon8.jpg";
+import deca9 from "@/assets/decathlon9.jpg";
+import deca10 from "@/assets/decathlon10.jpg";
+import deca11 from "@/assets/decathlon11.jpg";
+import deca12 from "@/assets/decathlon12.jpg";
+import deca13 from "@/assets/decathlon13.jpg";
+import deca14 from "@/assets/decathlon14.jpg";
+import deca15 from "@/assets/decathlon15.jpg";
+import deca16 from "@/assets/decathlon16.jpg";
+import deca19 from "@/assets/decathlon19.jpg";
+import deca20 from "@/assets/decathlon20.jpg";
+
 export const Route = createFileRoute("/events")({
   component: EventsPage,
 });
 
 const EVENTS_DATA = [
   {
-    id: "birthday",
-    title: "THE JUNGLE BIRTHDAY",
-    description: "Celebrating another year of strength and community. Relive the intensity and the celebration of the pack.",
+    id: "camping",
+    title: "THE JUNGLE CAMPING",
+    description:
+      "Training in the wild. A raw experience where the pack bonds through fire, movement, and the great outdoors.",
+    images: [camp, camp0, camp1, camp2, camp3, camp4, camp5, camp6, camp7, camp8],
+  },
+  {
+    id: "decathlon",
+    title: "THE JUNGLE DECATHLON",
+    description:
+      "10 events of pure grit. Testing the versatility and endurance of our beasts in the ultimate functional challenge.",
     images: [
-      bDay, bDay1, bDay2, bDay3, bDay4, bDay5, bDay6, bDay7, bDay8, bDay9,
-      bDay11, bDay12, bDay13, bDay14, bDay15, bDay16, bDay17, bDay18, bDay19,
-      bDay20, bDay21, bDay22, bDay23, bDay24, bDay25, bDay26, bDay27, bDay28,
-      bDay29, bDay30, bDay31, bDay32, bDay33, bDay34, bDay120
+      deca,
+      deca1,
+      deca2,
+      deca3,
+      deca4,
+      deca5,
+      deca6,
+      deca7,
+      deca8,
+      deca9,
+      deca10,
+      deca11,
+      deca12,
+      deca13,
+      deca14,
+      deca15,
+      deca16,
+      deca19,
+      deca20,
     ],
   },
   {
-    id: "hyrox",
-    title: "THE JUNGLE HYROX",
-    description: "The ultimate fitness race. Our members pushing their limits in the HYROX challenge.",
-    images: [gymFitbox, coachFitbox1, coachFitbox2, gymCross],
+    id: "birthday",
+    title: "THE JUNGLE BIRTHDAY",
+    description:
+      "Celebrating another year of strength and community. Relive the intensity and the celebration of the pack.",
+    images: [
+      bDay,
+      bDay1,
+      bDay2,
+      bDay3,
+      bDay4,
+      bDay5,
+      bDay6,
+      bDay7,
+      bDay8,
+      bDay9,
+      bDay11,
+      bDay12,
+      bDay13,
+      bDay14,
+      bDay15,
+      bDay16,
+      bDay17,
+      bDay18,
+      bDay19,
+      bDay20,
+      bDay21,
+      bDay22,
+      bDay23,
+      bDay24,
+      bDay25,
+      bDay26,
+      bDay27,
+      bDay28,
+      bDay29,
+      bDay30,
+      bDay31,
+      bDay32,
+      bDay33,
+      bDay34,
+      bDay120,
+    ],
   },
 ];
 
@@ -80,50 +171,62 @@ function EventsPage() {
       <main className="pt-32 pb-24 bg-background min-h-screen">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <span className="text-jungle font-display tracking-[0.3em] text-xs uppercase">Community</span>
-            <h1 className="display text-6xl md:text-8xl mt-4">JUNGLE <span className="text-jungle">EVENTS</span></h1>
+            <span className="text-jungle font-display tracking-[0.3em] text-xs uppercase">
+              Community
+            </span>
+            <h1 className="display text-6xl md:text-8xl mt-4">
+              JUNGLE <span className="text-jungle">EVENTS</span>
+            </h1>
             <p className="text-muted-foreground mt-6 text-lg max-w-2xl">
-              Capturing the moments that define the pack. From milestone celebrations to grueling competitions.
+              Capturing the moments that define the pack. From milestone celebrations to grueling
+              competitions.
             </p>
           </div>
 
-          <div className="grid gap-12">
+          <div className="grid gap-8">
             {EVENTS_DATA.map((event) => (
               <div key={event.id} className="group border border-border bg-card overflow-hidden">
-                <div className="grid md:grid-cols-2">
-                  <div className="relative h-[400px] overflow-hidden">
-                    <img 
-                      src={event.images[0]} 
-                      alt={event.title} 
+                <div className="grid md:grid-cols-2 lg:grid-cols-3">
+                  <div className="relative h-[250px] md:h-[350px] overflow-hidden lg:col-span-1">
+                    <img
+                      src={event.images[0]}
+                      alt={event.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
                   </div>
-                  <div className="p-8 md:p-12 flex flex-col justify-center">
-                    <h2 className="font-display text-4xl md:text-5xl tracking-tight mb-6">{event.title}</h2>
-                    <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                  <div className="p-6 md:p-8 flex flex-col justify-center bg-card lg:col-span-2">
+                    <h2 className="font-display text-3xl md:text-4xl tracking-tight mb-4">
+                      {event.title}
+                    </h2>
+                    <p className="text-muted-foreground text-base mb-6 leading-relaxed">
                       {event.description}
                     </p>
                     <button
                       onClick={() => setSelectedEvent(selectedEvent === event.id ? null : event.id)}
-                      className="inline-flex items-center justify-center bg-jungle text-primary-foreground font-display tracking-widest px-8 py-4 text-sm hover:bg-jungle-glow transition w-fit"
+                      className="inline-flex items-center justify-center bg-jungle text-primary-foreground font-display tracking-widest px-6 py-3 text-xs hover:bg-jungle-glow transition w-fit"
                     >
                       {selectedEvent === event.id ? "CLOSE ALBUM" : "VIEW FULL ALBUM"}
                     </button>
                   </div>
                 </div>
 
-                <div 
+                <div
                   className={cn(
-                    "grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-border/10 transition-all duration-700",
-                    selectedEvent === event.id ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+                    "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-6 bg-border/10 transition-all duration-700",
+                    selectedEvent === event.id
+                      ? "max-h-[5000px] opacity-100"
+                      : "max-h-0 opacity-0 overflow-hidden",
                   )}
                 >
                   {event.images.map((img, idx) => (
-                    <div key={idx} className="aspect-square overflow-hidden border border-border/50">
-                      <img 
-                        src={img} 
-                        alt={`${event.title} ${idx + 1}`} 
+                    <div
+                      key={idx}
+                      className="aspect-square overflow-hidden border border-border/50"
+                    >
+                      <img
+                        src={img}
+                        alt={`${event.title} ${idx + 1}`}
                         className="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer"
                       />
                     </div>
