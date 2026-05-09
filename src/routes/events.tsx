@@ -191,7 +191,7 @@ function EventsPage() {
                     <img
                       src={event.images[0]}
                       alt={event.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-contain bg-black/20 transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
                   </div>
