@@ -96,7 +96,7 @@ const EVENTS_DATA = [
     description:
       "10 events of pure grit. Testing the versatility and endurance of our beasts in the ultimate functional challenge.",
     images: [
-      deca,
+      deca13,
       deca1,
       deca2,
       deca3,
@@ -109,7 +109,7 @@ const EVENTS_DATA = [
       deca10,
       deca11,
       deca12,
-      deca13,
+      deca,
       deca14,
       deca15,
       deca16,
