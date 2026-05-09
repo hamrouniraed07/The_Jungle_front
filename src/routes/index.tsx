@@ -16,12 +16,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Two locations, one mindset. Cross-training and combat-ready boxing in Sahloul 4. Book your private séance.",
+          "Two locations, one mindset. Cross-training and combat-ready boxing in Sahloul 4. Join the pack today.",
       },
       { property: "og:title", content: "The Jungle — Cross-Training & Fit Box" },
       {
         property: "og:description",
-        content: "Forge raw power. Strike harder. Book your séance at The Jungle.",
+        content: "Forge raw power. Strike harder. Join the pack at The Jungle.",
       },
     ],
   }),

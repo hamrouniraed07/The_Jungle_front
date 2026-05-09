@@ -34,10 +34,10 @@ export function Hero() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
-              to="/booking"
+              to="/contact"
               className="bg-jungle text-primary-foreground font-display tracking-widest px-8 py-4 hover:bg-jungle-glow transition shadow-brutal"
             >
-              BOOK A PRIVATE SÉANCE
+              JOIN THE PACK
             </Link>
             <Link
               to="/locations"

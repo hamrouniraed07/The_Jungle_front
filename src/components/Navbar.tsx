@@ -18,19 +18,28 @@ export function Navbar() {
           <Link to="/locations" className="hover:text-jungle transition">
             LOCATIONS
           </Link>
-          <Link to="/booking" className="hover:text-jungle transition">
-            BOOKING
+          <Link to="/events" className="hover:text-jungle transition">
+            EVENTS
+          </Link>
+          <Link to="/transformations" className="hover:text-jungle transition">
+            TRANSFORMATIONS
           </Link>
           <Link to="/contact" className="hover:text-jungle transition">
             CONTACT
           </Link>
         </div>
         <Link
+          to="/contact"
+          className="bg-jungle text-primary-foreground font-display tracking-widest px-5 py-2 text-sm hover:bg-jungle-glow transition shadow-jungle"
+        >
+          CONTACT US
+        </Link>
+        {/* <Link
           to="/booking"
           className="bg-jungle text-primary-foreground font-display tracking-widest px-5 py-2 text-sm hover:bg-jungle-glow transition shadow-jungle"
         >
           BOOK SÉANCE
-        </Link>
+        </Link> */}
       </nav>
     </header>
   );

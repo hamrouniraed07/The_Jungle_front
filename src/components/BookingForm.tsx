@@ -34,7 +34,7 @@ export function BookingForm() {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [location, setLocation] = useState<LocationId>(currentId);
   const [slot, setSlot] = useState<BookingSlot | null>(null);
-  const [user, setUser] = useState<User & { email?: string }>({
+  const [user, setUser] = useState({
     fullName: "",
     phone: "",
     goal: "",
@@ -46,51 +46,47 @@ export function BookingForm() {
   const next = () => setStep((s) => (s < 4 ? ((s + 1) as 1 | 2 | 3 | 4) : s));
   const prev = () => setStep((s) => (s > 1 ? ((s - 1) as 1 | 2 | 3 | 4) : s));
 
-  const submit = () => {
+  const handleInputChange = (field: string, value: string) => {
+    setUser((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const submit = async () => {
     if (!slot) return;
-    (async () => {
-      setLoading(true);
-      try {
-        // Client-side guard: ensure goal meets backend minimum
-        if (!user.goal || user.goal.length < 10) {
-          toast.error("Fitness goal must be at least 10 characters.");
-          setLoading(false);
-          return;
-        }
-
-        // Fetch trainers for the selected location and pick the first active trainer
-        const trainers = await api.getTrainers(location);
-        if (!trainers || trainers.length === 0) {
-          toast.error("No trainers are currently available at this location.");
-          setLoading(false);
-          return;
-        }
-        const trainerId = trainers && trainers.length ? trainers[0].id : "";
-
-        const dt = new Date(`${slot.date}T${slot.time}:00`);
-        const bookingPayload = {
-          location_id: location,
-          trainer_id: trainerId || "000000000000000000000000",
-          client_name: user.fullName,
-          client_email:
-            (user as User & { email?: string }).email ||
-            `${user.fullName.replace(/\s+/g, ".").toLowerCase()}@example.com`,
-          client_phone: user.phone,
-          datetime: dt.toISOString(),
-          goal: user.goal,
-          notes: null,
-        };
-
-        await api.createBooking(bookingPayload);
-        toast.success("Séance confirmed. Welcome to the Jungle.");
-        setStep(4);
-      } catch (err: Error | unknown) {
-        console.error(err);
-        toast.error(`Booking failed: ${err instanceof Error ? err.message : String(err)}`);
-      } finally {
-        setLoading(false);
+    setLoading(true);
+    try {
+      if (!user.goal || user.goal.length < 10) {
+        toast.error("Fitness goal must be at least 10 characters.");
+        return;
       }
-    })();
+
+      const trainers = await api.getTrainers(location);
+      if (!trainers || trainers.length === 0) {
+        toast.error("No trainers are currently available at this location.");
+        return;
+      }
+      const trainerId = trainers[0].id;
+
+      const dt = new Date(`${slot.date}T${slot.time}:00`);
+      const bookingPayload = {
+        location_id: location,
+        trainer_id: trainerId || "000000000000000000000000",
+        client_name: user.fullName,
+        client_email: user.email || `${user.fullName.replace(/\s+/g, ".").toLowerCase()}@example.com`,
+        client_phone: user.phone,
+        datetime: dt.toISOString(),
+        goal: user.goal,
+        notes: null,
+      };
+
+      await api.createBooking(bookingPayload);
+      toast.success("Séance confirmed. Welcome to the Jungle.");
+      setStep(4);
+    } catch (err: any) {
+      console.error(err);
+      toast.error(`Booking failed: ${err.message || String(err)}`);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -104,6 +100,7 @@ export function BookingForm() {
               {LOCATION_LIST.map((loc) => (
                 <button
                   key={loc.id}
+                  type="button"
                   onClick={() => {
                     setLocation(loc.id);
                     setCurrentId(loc.id);
@@ -112,7 +109,7 @@ export function BookingForm() {
                     "text-left p-6 border transition-all",
                     location === loc.id
                       ? "border-jungle bg-jungle/5 shadow-jungle"
-                      : "border-border hover:border-jungle/50",
+                      : "border-border hover:border-jungle/5"
                   )}
                 >
                   <h4 className="font-display text-2xl tracking-wider">{loc.name}</h4>
@@ -133,17 +130,14 @@ export function BookingForm() {
                 return (
                   <button
                     key={iso}
+                    type="button"
                     onClick={() => setSlot({ date: iso, time: slot?.time ?? "", available: true })}
                     className={cn(
                       "p-3 border text-center transition",
-                      selected
-                        ? "border-jungle bg-jungle/10"
-                        : "border-border hover:border-jungle/50",
+                      selected ? "border-jungle bg-jungle/10" : "border-border hover:border-jungle/50"
                     )}
                   >
-                    <div className="text-xs text-muted-foreground font-display tracking-widest">
-                      {f.dow}
-                    </div>
+                    <div className="text-xs text-muted-foreground font-display tracking-widest">{f.dow}</div>
                     <div className="font-display text-2xl mt-1">{f.num}</div>
                     <div className="text-[10px] text-muted-foreground tracking-widest">{f.mon}</div>
                   </button>
@@ -154,23 +148,19 @@ export function BookingForm() {
               <div className="mt-8">
                 <p className="font-display tracking-widest text-jungle text-sm">SELECT TIME</p>
                 <div className="grid grid-cols-4 md:grid-cols-8 gap-2 mt-3">
-                  {TIMES.map((t) => {
-                    const sel = slot?.time === t;
-                    return (
-                      <button
-                        key={t}
-                        onClick={() => setSlot({ ...slot, time: t })}
-                        className={cn(
-                          "py-3 border font-display tracking-widest text-sm transition",
-                          sel
-                            ? "border-jungle bg-jungle text-primary-foreground"
-                            : "border-border hover:border-jungle/50",
-                        )}
-                      >
-                        {t}
-                      </button>
-                    );
-                  })}
+                  {TIMES.map((t) => (
+                    <button
+                      key={t}
+                      type="button"
+                      onClick={() => setSlot({ ...slot, time: t })}
+                      className={cn(
+                        "py-3 border font-display tracking-widest text-sm transition",
+                        slot.time === t ? "border-jungle bg-jungle text-primary-foreground" : "border-border hover:border-jungle/50"
+                      )}
+                    >
+                      {t}
+                    </button>
+                  ))}
                 </div>
               </div>
             )}
@@ -181,44 +171,50 @@ export function BookingForm() {
           <div>
             <StepHeader num="03" title="YOUR DETAILS" />
             <div className="grid md:grid-cols-2 gap-4 mt-6">
-              <Field
-                label="FULL NAME"
-                value={user.fullName}
-                onChange={(v) => setUser({ ...user, fullName: v })}
-              />
-              <Field
-                label="PHONE"
-                value={user.phone}
-                onChange={(v) => setUser({ ...user, phone: v })}
-              />
-              <Field
-                label="EMAIL"
-                value={user.email ?? ""}
-                onChange={(v) => setUser({ ...user, email: v })}
-              />
-              <div className="md:col-span-2">
-                <label className="block font-display tracking-widest text-xs text-jungle mb-2">
-                  FITNESS GOAL
-                </label>
-                <textarea
-                  value={user.goal}
-                  onChange={(e) => setUser({ ...user, goal: e.target.value })}
-                  rows={4}
-                  maxLength={500}
-                  placeholder="What battle are you training for?"
+              <div>
+                <label className="block font-display tracking-widest text-xs text-jungle mb-2">FULL NAME</label>
+                <input
+                  type="text"
+                  value={user.fullName}
+                  onChange={(e) => handleInputChange("fullName", e.target.value)}
                   className="w-full bg-input border border-border p-3 text-foreground focus:border-jungle outline-none"
                 />
-                {(user.goal ?? "").length > 0 && (user.goal ?? "").length < 10 && (
-                  <p className="text-xs text-amber-400 mt-2">Fitness goal must be at least 10 characters.</p>
+              </div>
+              <div>
+                <label className="block font-display tracking-widest text-xs text-jungle mb-2">PHONE</label>
+                <input
+                  type="text"
+                  value={user.phone}
+                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  className="w-full bg-input border border-border p-3 text-foreground focus:border-jungle outline-none"
+                />
+              </div>
+              <div>
+                <label className="block font-display tracking-widest text-xs text-jungle mb-2">EMAIL</label>
+                <input
+                  type="email"
+                  value={user.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  className="w-full bg-input border border-border p-3 text-foreground focus:border-jungle outline-none"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block font-display tracking-widest text-xs text-jungle mb-2">FITNESS GOAL</label>
+                <textarea
+                  value={user.goal}
+                  onChange={(e) => handleInputChange("goal", e.target.value)}
+                  rows={4}
+                  className="w-full bg-input border border-border p-3 text-foreground focus:border-jungle outline-none"
+                />
+                {user.goal.length > 0 && user.goal.length < 10 && (
+                  <p className="text-xs text-amber-400 mt-2">Goal must be at least 10 characters.</p>
                 )}
               </div>
             </div>
             <div className="mt-8 p-4 border border-jungle/40 bg-jungle/5">
               <p className="font-display tracking-widest text-jungle text-sm">SUMMARY</p>
-              <p className="text-sm mt-2">{LOCATIONS[location].name}</p>
-              <p className="text-sm text-muted-foreground">
-                {slot?.date} · {slot?.time}
-              </p>
+              <p className="text-sm mt-2">{LOCATIONS[location]?.name}</p>
+              <p className="text-sm text-muted-foreground">{slot?.date} · {slot?.time}</p>
             </div>
           </div>
         )}
@@ -229,25 +225,23 @@ export function BookingForm() {
               <Check className="w-8 h-8" />
             </div>
             <h3 className="font-display text-3xl mt-6 tracking-wider">SÉANCE LOCKED IN</h3>
-            <p className="text-muted-foreground mt-2">
-              {"\n            We'll contact you at "}
-              {user.phone}
-              {" to confirm.\n          "}
-            </p>
+            <p className="text-muted-foreground mt-2">We'll contact you at {user.phone} to confirm.</p>
           </div>
         )}
 
         {step < 4 && (
           <div className="flex justify-between mt-10">
             <button
+              type="button"
               onClick={prev}
-              disabled={step === 1}
+              disabled={step === 1 || loading}
               className="flex items-center gap-2 font-display tracking-widest text-sm px-5 py-3 border border-border disabled:opacity-30 hover:border-jungle/60"
             >
               <ChevronLeft className="w-4 h-4" /> BACK
             </button>
             {step < 3 ? (
               <button
+                type="button"
                 onClick={next}
                 disabled={step === 2 && (!slot?.date || !slot?.time)}
                 className="flex items-center gap-2 bg-jungle text-primary-foreground font-display tracking-widest text-sm px-6 py-3 hover:bg-jungle-glow disabled:opacity-30 transition"
@@ -255,15 +249,14 @@ export function BookingForm() {
                 NEXT <ChevronRight className="w-4 h-4" />
               </button>
             ) : (
-                <button
-                  onClick={submit}
-                  disabled={
-                    !user.fullName || !user.phone || !(user.goal && user.goal.length >= 10)
-                  }
-                  className="bg-jungle text-primary-foreground font-display tracking-widest text-sm px-6 py-3 hover:bg-jungle-glow disabled:opacity-30 transition shadow-brutal"
-                >
-                  CONFIRM SÉANCE
-                </button>
+              <button
+                type="button"
+                onClick={submit}
+                disabled={loading || !user.fullName || !user.phone || user.goal.length < 10}
+                className="bg-jungle text-primary-foreground font-display tracking-widest text-sm px-6 py-3 hover:bg-jungle-glow disabled:opacity-30 transition shadow-brutal"
+              >
+                {loading ? "PROCESSING..." : "CONFIRM SÉANCE"}
+              </button>
             )}
           </div>
         )}
