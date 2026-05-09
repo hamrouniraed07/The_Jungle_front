@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { LocationProvider } from "@/context/LocationContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import gymCross from "@/assets/gym-cross.jpg";
 import gymFitbox from "@/assets/gym-fitbox.jpg";
 import coachCross1 from "@/assets/coach-cross-1.jpg";
@@ -123,7 +124,7 @@ const EVENTS_DATA = [
     description:
       "Celebrating another year of strength and community. Relive the intensity and the celebration of the pack.",
     images: [
-      bDay,
+      bDay26,
       bDay1,
       bDay2,
       bDay3,
@@ -148,7 +149,7 @@ const EVENTS_DATA = [
       bDay23,
       bDay24,
       bDay25,
-      bDay26,
+      bDay,
       bDay27,
       bDay28,
       bDay29,
@@ -164,6 +165,32 @@ const EVENTS_DATA = [
 
 function EventsPage() {
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  // Close lightbox on escape key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
+
+  const activeEvent = EVENTS_DATA.find((e) => e.id === selectedEvent);
+
+  const nextPhoto = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (activeEvent && lightboxIndex !== null) {
+      setLightboxIndex((lightboxIndex + 1) % activeEvent.images.length);
+    }
+  };
+
+  const prevPhoto = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (activeEvent && lightboxIndex !== null) {
+      setLightboxIndex((lightboxIndex - 1 + activeEvent.images.length) % activeEvent.images.length);
+    }
+  };
 
   return (
     <LocationProvider>
@@ -183,28 +210,35 @@ function EventsPage() {
             </p>
           </div>
 
-          <div className="grid gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {EVENTS_DATA.map((event) => (
-              <div key={event.id} className="group border border-border bg-card overflow-hidden">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3">
-                  <div className="relative h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden lg:col-span-1">
-                    <img
-                      src={event.images[0]}
-                      alt={event.title}
-                      className="w-full h-full object-contain bg-black/20 transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
-                  </div>
-                  <div className="p-6 sm:p-8 md:p-8 flex flex-col justify-center bg-card lg:col-span-2">
-                    <h2 className="font-display text-2xl sm:text-3xl md:text-4xl tracking-tight mb-4">
+              <div
+                key={event.id}
+                className="flex flex-col border border-border bg-card overflow-hidden h-fit group/card"
+              >
+                <div className="relative h-[450px] overflow-hidden">
+                  <img
+                    src={event.images[0]}
+                    alt={event.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover/card:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80" />
+
+                  <div className="absolute inset-0 flex flex-col justify-end p-8">
+                    <h2 className="font-display text-3xl tracking-tight mb-2 uppercase leading-none">
                       {event.title}
                     </h2>
-                    <p className="text-muted-foreground text-sm sm:text-base mb-6 leading-relaxed">
+                    <p className="text-muted-foreground text-sm line-clamp-2 mb-6">
                       {event.description}
                     </p>
                     <button
                       onClick={() => setSelectedEvent(selectedEvent === event.id ? null : event.id)}
-                      className="inline-flex items-center justify-center bg-jungle text-primary-foreground font-display tracking-widest px-6 py-3 text-[10px] sm:text-xs hover:bg-jungle-glow transition w-full sm:w-fit"
+                      className={cn(
+                        "inline-flex items-center justify-center font-display tracking-widest px-6 py-4 text-xs transition-all duration-300 w-full border",
+                        selectedEvent === event.id
+                          ? "bg-transparent border-jungle text-jungle"
+                          : "bg-jungle border-jungle text-primary-foreground hover:bg-jungle-glow",
+                      )}
                     >
                       {selectedEvent === event.id ? "CLOSE ALBUM" : "VIEW FULL ALBUM"}
                     </button>
@@ -213,30 +247,107 @@ function EventsPage() {
 
                 <div
                   className={cn(
-                    "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-6 bg-border/10 transition-all duration-700",
+                    "bg-black/40 transition-all duration-500 overflow-hidden",
                     selectedEvent === event.id
-                      ? "max-h-[5000px] opacity-100"
-                      : "max-h-0 opacity-0 overflow-hidden",
+                      ? "max-h-[5000px] opacity-100 p-2"
+                      : "max-h-0 opacity-0",
                   )}
                 >
-                  {event.images.map((img, idx) => (
-                    <div
-                      key={idx}
-                      className="aspect-square overflow-hidden border border-border/50"
-                    >
-                      <img
-                        src={img}
-                        alt={`${event.title} ${idx + 1}`}
-                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer"
-                      />
-                    </div>
-                  ))}
+                  <div className="grid grid-cols-3 gap-1">
+                    {event.images.map((img, idx) => (
+                      <div
+                        key={idx}
+                        className="group relative aspect-square overflow-hidden cursor-pointer"
+                        onClick={() => {
+                          setSelectedEvent(event.id);
+                          setLightboxIndex(idx);
+                        }}
+                      >
+                        <img
+                          src={img}
+                          alt={`${event.title} ${idx + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-110"
+                        />
+                        <div className="absolute inset-0 bg-jungle/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <Maximize2 className="w-4 h-4 text-white" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </main>
+
+      {/* Lightbox Modal */}
+      {lightboxIndex !== null && activeEvent && (
+        <div
+          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-xl flex items-center justify-center p-4 animate-in fade-in duration-300"
+          onClick={() => setLightboxIndex(null)}
+        >
+          <button
+            className="absolute top-8 right-8 text-white/50 hover:text-jungle transition-colors z-[110]"
+            onClick={() => setLightboxIndex(null)}
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          <button
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-jungle transition-all z-[110] p-4 bg-white/5 rounded-full backdrop-blur-md"
+            onClick={prevPhoto}
+          >
+            <ChevronLeft className="w-8 h-8" />
+          </button>
+
+          <button
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-jungle transition-all z-[110] p-4 bg-white/5 rounded-full backdrop-blur-md"
+            onClick={nextPhoto}
+          >
+            <ChevronRight className="w-8 h-8" />
+          </button>
+
+          <div className="relative w-full h-full flex flex-col items-center justify-center gap-6">
+            <div
+              className="relative max-w-5xl w-full h-[70vh] md:h-[80vh] group/image"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={activeEvent.images[lightboxIndex]}
+                alt="Enlarged view"
+                className="w-full h-full object-contain drop-shadow-2xl"
+              />
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-xs font-display tracking-[0.2em] text-white/70">
+                {activeEvent.title} · {lightboxIndex + 1} / {activeEvent.images.length}
+              </div>
+            </div>
+
+            {/* Thumbnails Strip */}
+            <div
+              className="flex gap-2 overflow-x-auto max-w-full px-4 py-2 no-scrollbar"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {activeEvent.images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setLightboxIndex(idx)}
+                  className={cn(
+                    "relative w-16 h-16 flex-shrink-0 border-2 transition-all duration-300 overflow-hidden",
+                    lightboxIndex === idx
+                      ? "border-jungle scale-110 z-10"
+                      : "border-transparent opacity-40 hover:opacity-100",
+                  )}
+                >
+                  <img src={img} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </LocationProvider>
   );
