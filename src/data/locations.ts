@@ -8,7 +8,7 @@ export const LOCATIONS: Record<LocationId, GymLocation> = {
     name: "The Jungle Cross-Training Gym",
     tagline: "Forge raw power. Train like a beast.",
     description:
-      "A 600m² temple of iron built for athletes who refuse to settle. Functional rigs, Olympic platforms, sleds, and unlimited barbell racks — train heavy, train smart.",
+      "A 600m² temple of iron dedicated to CrossFit, musculation, and elite performance. We specialize in preparing athletes—footballers, basketballers, handballers, and more—for high-level competition through raw power and functional strength.",
     address: "RJM6+M6F, Sahloul 4, Sousse",
     hours: [
       { day: "Mon — Fri", time: "06:00 — 23:00" },
@@ -44,7 +44,7 @@ export const LOCATIONS: Record<LocationId, GymLocation> = {
     name: "The Jungle Fit Box",
     tagline: "Strike harder. Move faster. Hunt smarter.",
     description:
-      "Our combat-ready box dedicated to boxing, MMA conditioning and HIIT. Ring, heavy bags, hand-wrap stations and small-group coaching. Step in. Step up.",
+      "Our combat-ready box focused on CrossFit, musculation, and combat conditioning. We forge competition-ready athletes—from footballers to basketballers—using HIIT, MMA conditioning, and specialized functional training.",
     address: "Hammem sousse - kantaoui, Sousse, Tunisia, 4011",
     hours: [
       { day: "Mon — Fri", time: "07:00 — 22:00" },

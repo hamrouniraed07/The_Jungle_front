@@ -12,16 +12,16 @@ import { Toaster } from "@/components/ui/sonner";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "The Jungle — Cross-Training & Fit Box Gyms" },
+      { title: "The Jungle — CrossFit, Musculation & Athlete Performance" },
       {
         name: "description",
         content:
-          "Two locations, one mindset. Cross-training and combat-ready boxing in Sahloul 4. Join the pack today.",
+          "Two locations, one mindset. Specialized in CrossFit, musculation, and preparing athletes (footballers, basketballers, handballers) for competition in Sahloul 4 and Kantaoui. Join the pack today.",
       },
-      { property: "og:title", content: "The Jungle — Cross-Training & Fit Box" },
+      { property: "og:title", content: "The Jungle — CrossFit, Musculation & Athlete Performance" },
       {
         property: "og:description",
-        content: "Forge raw power. Strike harder. Join the pack at The Jungle.",
+        content: "Forge raw power. Prepare for competition. Join the pack at The Jungle.",
       },
     ],
   }),

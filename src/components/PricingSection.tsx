@@ -20,7 +20,6 @@ const CROSS_PLANS: Plan[] = [
     price: 80,
     period: "TND / month",
     features: ["All CrossFit classes", "Olympic platforms", "Coached sessions", "Recovery lounge"],
-    highlighted: true,
   },
   {
     name: "All-Access",
@@ -32,6 +31,7 @@ const CROSS_PLANS: Plan[] = [
       "Priority booking",
       "Full facility access",
     ],
+    highlighted: true,
   },
 ];
 

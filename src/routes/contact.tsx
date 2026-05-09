@@ -40,11 +40,11 @@ function ContactPage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-jungle" />
-                  +33 1 23 45 67 89
+                  {loc.id === "cross" ? "+216 25 614 679" : "+216 29 268 834"}
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-jungle" />
-                  hello@thejungle.fit
+                  the.jungle.sousse2019@gmail.com
                 </div>
               </div>
               <div className="mt-6">
