@@ -4,15 +4,15 @@ import { Dumbbell, Wrench, ShieldAlert, Clock, MapPin } from "lucide-react";
 export function FeatureSection() {
   const { current } = useLocationCtx();
   return (
-    <section className="max-w-7xl mx-auto px-6 py-24">
-      <div className="grid md:grid-cols-2 gap-12 items-start">
+    <section className="max-w-7xl mx-auto px-6 py-12 sm:py-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
         <div>
-          <span className="text-jungle font-display tracking-[0.3em] text-xs">
+          <span className="text-jungle font-display tracking-[0.3em] text-[10px] sm:text-xs">
             CURRENTLY VIEWING
           </span>
-          <h2 className="display text-4xl md:text-6xl mt-3">{current.name}</h2>
-          <p className="text-lg text-muted-foreground mt-4">{current.description}</p>
-          <div className="mt-8 grid sm:grid-cols-2 gap-4">
+          <h2 className="display text-3xl sm:text-4xl md:text-6xl mt-3">{current.name}</h2>
+          <p className="text-base sm:text-lg text-muted-foreground mt-4">{current.description}</p>
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <InfoTile icon={<MapPin />} title="ADDRESS" value={current.address} />
             <InfoTile
               icon={<Clock />}
@@ -37,7 +37,7 @@ export function FeatureSection() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6 mt-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-12 sm:mt-16">
         <Block icon={<Dumbbell />} title="EQUIPMENT" items={current.equipment} />
         <Block icon={<Wrench />} title="FACILITIES" items={current.facilities} />
         <Block icon={<ShieldAlert />} title="THE JUNGLE CODE" items={current.rules} />

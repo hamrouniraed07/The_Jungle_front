@@ -174,10 +174,10 @@ function EventsPage() {
             <span className="text-jungle font-display tracking-[0.3em] text-xs uppercase">
               Community
             </span>
-            <h1 className="display text-6xl md:text-8xl mt-4">
+            <h1 className="display text-5xl md:text-8xl mt-4">
               JUNGLE <span className="text-jungle">EVENTS</span>
             </h1>
-            <p className="text-muted-foreground mt-6 text-lg max-w-2xl">
+            <p className="text-muted-foreground mt-6 text-base md:text-lg max-w-2xl">
               Capturing the moments that define the pack. From milestone celebrations to grueling
               competitions.
             </p>
@@ -187,7 +187,7 @@ function EventsPage() {
             {EVENTS_DATA.map((event) => (
               <div key={event.id} className="group border border-border bg-card overflow-hidden">
                 <div className="grid md:grid-cols-2 lg:grid-cols-3">
-                  <div className="relative h-[250px] md:h-[350px] overflow-hidden lg:col-span-1">
+                  <div className="relative h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden lg:col-span-1">
                     <img
                       src={event.images[0]}
                       alt={event.title}
@@ -195,16 +195,16 @@ function EventsPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
                   </div>
-                  <div className="p-6 md:p-8 flex flex-col justify-center bg-card lg:col-span-2">
-                    <h2 className="font-display text-3xl md:text-4xl tracking-tight mb-4">
+                  <div className="p-6 sm:p-8 md:p-8 flex flex-col justify-center bg-card lg:col-span-2">
+                    <h2 className="font-display text-2xl sm:text-3xl md:text-4xl tracking-tight mb-4">
                       {event.title}
                     </h2>
-                    <p className="text-muted-foreground text-base mb-6 leading-relaxed">
+                    <p className="text-muted-foreground text-sm sm:text-base mb-6 leading-relaxed">
                       {event.description}
                     </p>
                     <button
                       onClick={() => setSelectedEvent(selectedEvent === event.id ? null : event.id)}
-                      className="inline-flex items-center justify-center bg-jungle text-primary-foreground font-display tracking-widest px-6 py-3 text-xs hover:bg-jungle-glow transition w-fit"
+                      className="inline-flex items-center justify-center bg-jungle text-primary-foreground font-display tracking-widest px-6 py-3 text-[10px] sm:text-xs hover:bg-jungle-glow transition w-full sm:w-fit"
                     >
                       {selectedEvent === event.id ? "CLOSE ALBUM" : "VIEW FULL ALBUM"}
                     </button>

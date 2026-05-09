@@ -106,10 +106,10 @@ function TransformationsPage() {
             <span className="text-jungle font-display tracking-[0.3em] text-xs uppercase">
               Results
             </span>
-            <h1 className="display text-6xl md:text-8xl mt-4">
+            <h1 className="display text-5xl md:text-8xl mt-4">
               BEAST <span className="text-jungle">TRANSFORMATIONS</span>
             </h1>
-            <p className="text-muted-foreground mt-6 text-lg max-w-2xl">
+            <p className="text-muted-foreground mt-6 text-base md:text-lg max-w-2xl">
               Proof that the work works. Real members, real results, forged in the Jungle.
             </p>
           </div>
@@ -117,7 +117,7 @@ function TransformationsPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {TRANSFORMATIONS.map((beast, idx) => (
               <div key={idx} className="group border border-border bg-card overflow-hidden">
-                <div className="relative h-[400px] overflow-hidden">
+                <div className="relative h-[300px] sm:h-[400px] overflow-hidden">
                   <img
                     src={beast.image}
                     alt={beast.name}
@@ -125,11 +125,13 @@ function TransformationsPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
 
-                  <div className="absolute bottom-0 left-0 p-6 w-full">
-                    <div className="mb-4">
-                      <h2 className="font-display text-4xl tracking-tight">{beast.name}</h2>
+                  <div className="absolute bottom-0 left-0 p-4 sm:p-6 w-full">
+                    <div className="mb-2 sm:mb-4">
+                      <h2 className="font-display text-2xl sm:text-4xl tracking-tight">
+                        {beast.name}
+                      </h2>
                     </div>
-                    <p className="text-muted-foreground text-sm line-clamp-2">
+                    <p className="text-muted-foreground text-xs sm:text-sm line-clamp-2">
                       {beast.description}
                     </p>
                   </div>

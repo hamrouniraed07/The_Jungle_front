@@ -52,15 +52,15 @@ const COACHES: Record<LocationId, Coach[]> = {
 export function CoachesSection() {
   return (
     <section className="border-t border-border bg-card/30">
-      <div className="max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
-          <span className="text-jungle font-display tracking-[0.3em] text-xs">
+      <div className="max-w-7xl mx-auto px-6 py-12 sm:py-24">
+        <div className="text-center mb-12 sm:mb-16">
+          <span className="text-jungle font-display tracking-[0.3em] text-[10px] sm:text-xs">
             THE PACK LEADERS
           </span>
-          <h2 className="display text-4xl md:text-6xl mt-3">
+          <h2 className="display text-3xl sm:text-4xl md:text-6xl mt-3">
             MEET YOUR <span className="text-jungle">COACHES</span>
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+          <p className="text-muted-foreground mt-4 text-sm sm:text-base max-w-xl mx-auto">
             Two arenas. Two specialized teams. Every coach earns their place in the jungle.
           </p>
         </div>
@@ -76,13 +76,13 @@ export function CoachesSection() {
 function CoachGroup({ title, coaches }: { title: string; coaches: Coach[] }) {
   return (
     <div>
-      <div className="flex items-baseline justify-between mb-6 border-b border-border pb-3">
-        <h3 className="font-display text-xl md:text-2xl tracking-wider">{title}</h3>
-        <span className="text-jungle font-display tracking-widest text-xs">
+      <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between mb-6 border-b border-border pb-3 gap-2">
+        <h3 className="font-display text-lg sm:text-xl md:text-2xl tracking-wider">{title}</h3>
+        <span className="text-jungle font-display tracking-widest text-[10px] sm:text-xs">
           {coaches.length} COACHES
         </span>
       </div>
-      <div className="grid sm:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {coaches.map((c) => (
           <CoachCard key={c.name} coach={c} />
         ))}
