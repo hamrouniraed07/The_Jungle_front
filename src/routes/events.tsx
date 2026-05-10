@@ -79,6 +79,27 @@ import deca16 from "@/assets/decathlon16.jpg";
 import deca19 from "@/assets/decathlon19.jpg";
 import deca20 from "@/assets/decathlon20.jpg";
 
+import numi from "@/assets/Numidos.jpg";
+import numi1 from "@/assets/Numidos1.jpg";
+import numi2 from "@/assets/Numidos2.jpg";
+import numi3 from "@/assets/Numidos3.jpg";
+import numi4 from "@/assets/Numidos4.jpg";
+import numi5 from "@/assets/Numidos5.jpg";
+import numi6 from "@/assets/Numidos6.jpg";
+import numi7 from "@/assets/Numidos7.jpg";
+import numi9 from "@/assets/Numidos9.jpg";
+import numi10 from "@/assets/Numidos10.jpg";
+import numi11 from "@/assets/Numidos11.jpg";
+import numi12 from "@/assets/Numidos12.jpg";
+import numi13 from "@/assets/Numidos13.jpg";
+import numi14 from "@/assets/Numidos14.jpg";
+import numi16 from "@/assets/Numidos16.jpg";
+import numi17 from "@/assets/Numidos17.jpg";
+import numi18 from "@/assets/Numidos18.jpg";
+import numi20 from "@/assets/Numidos20.jpg";
+import numi21 from "@/assets/Numidos21.jpg";
+import numi22 from "@/assets/Numidos22.jpg";
+
 export const Route = createFileRoute("/events")({
   component: EventsPage,
 });
@@ -159,6 +180,35 @@ const EVENTS_DATA = [
       bDay33,
       bDay34,
       bDay120,
+    ],
+  },
+
+  {
+    id: "numidos",
+    title: "NUMIDOS CHALLENGE",
+    description:
+      "Pushing limits and conquering obstacles. The ultimate test of grit and determination in the wild.",
+    images: [
+      numi,
+      numi1,
+      numi2,
+      numi3,
+      numi4,
+      numi5,
+      numi6,
+      numi7,
+      numi9,
+      numi10,
+      numi11,
+      numi12,
+      numi13,
+      numi14,
+      numi16,
+      numi17,
+      numi18,
+      numi20,
+      numi21,
+      numi22,
     ],
   },
 ];
